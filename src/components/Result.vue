@@ -13,7 +13,8 @@ export default {
   props: ['result'],
   methods: {
     searchTerm(result) {
-      this.$emit("search", result.result);
+      this.term = result
+      this.$emit("search", result);
     }
   }
 }

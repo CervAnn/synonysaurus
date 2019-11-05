@@ -3,12 +3,14 @@
     <section id="SearchContainer">
       <form id="SearchForm" @submit.prevent="searchTerm">
         <h1 id="search-prompt">Search Term</h1>
-        <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
-        <button type="submit" @click="searchTerm">Submit</button>
+        <div id="search-submit-container">
+          <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
+          <button id="submit-button" type="submit" @click="searchTerm"><img id="volcano" src='../assets/volcano.svg'/></button>
+        </div>
       </form>
     </section>
     <section id="ResultsContainer">
-    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm" />
+    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm" :term="term"/>
     </section>
   </main>
 </template>
@@ -72,10 +74,16 @@ export default {
 		1px 1px 0 #000;
 }
 
+#search-submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #search-input {
   height: 40px;
-  width: 50%;
-  border-radius: 10px;
+  width: 100%;
+  border-radius: 10px 0px 0px 10px;
   font-size: 20px;
   padding: 10px;
 }
@@ -86,5 +94,17 @@ export default {
   background-color: #E1A953;
   display: flex;
   flex-flow: row wrap;
+}
+
+#submit-button {
+  background: transparent;
+}
+
+#submit-button:hover {
+  background-color: yellow;
+}
+
+#volcano {
+  height: 35px;
 }
 </style>
