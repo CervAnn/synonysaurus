@@ -8,14 +8,19 @@
       </form>
     </section>
     <section>
-    <ResultsContainer />
+    <ResultsContainer @search="searchTerm"/>
     </section>
   </main>
 </template>
 
 <script>
+import ResultsContainer from './ResultsContainer'
+
 export default {
   name: 'SearchForm',
+  components: {
+    ResultsContainer
+  },
   data() {
     return {
       term: "",

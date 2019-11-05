@@ -5,7 +5,9 @@
 
 <script>
 export default {
-  
+  name: "Result",
+  props: ['results'],
+  data()
 }
 </script>
 
