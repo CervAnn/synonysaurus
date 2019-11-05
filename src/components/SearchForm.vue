@@ -3,23 +3,23 @@
     <section id="SearchContainer">
       <form id="SearchForm" @submit.prevent="searchTerm">
         <h1 id="search-prompt">Search Term</h1>
-        <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" />
+        <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
         <button type="submit" @click="searchTerm">Submit</button>
       </form>
     </section>
-    <section>
-    <ResultsContainer @search="searchTerm"/>
+    <section id="ResultsContainer">
+    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm" />
     </section>
   </main>
 </template>
 
 <script>
-import ResultsContainer from './ResultsContainer'
+import Result from './Result'
 
 export default {
   name: 'SearchForm',
   components: {
-    ResultsContainer
+    Result
   },
   data() {
     return {
@@ -78,5 +78,13 @@ export default {
   border-radius: 10px;
   font-size: 20px;
   padding: 10px;
+}
+
+#ResultsContainer {
+  height: 55vh;
+  width: 100%;
+  background-color: #E1A953;
+  display: flex;
+  flex-flow: row wrap;
 }
 </style>
