@@ -42,6 +42,16 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ![WalkthroughSynonysaurus](https://user-images.githubusercontent.com/11339301/68319912-52018f00-007c-11ea-8740-f82884fa9d5a.gif)
 
+## Screenshots
+
+### Home Page
+
+<img width="1440" alt="Screen Shot 2019-11-06 at 11 25 54 AM" src="https://user-images.githubusercontent.com/11339301/68326864-7748ca00-0089-11ea-985a-61ff30c802d3.png">
+
+### Page w/ Results
+
+<img width="1440" alt="Screen Shot 2019-11-06 at 11 26 08 AM" src="https://user-images.githubusercontent.com/11339301/68326923-99dae300-0089-11ea-89af-7657de007c6e.png">
+
 
 
 
