@@ -5,7 +5,10 @@
         <h1 id="search-prompt">Search Term</h1>
         <div id="search-submit-container">
           <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
-          <button id="submit-button" type="submit" @click="searchTerm"><img id="volcano" src='../assets/volcano.svg'/></button>
+          <button id="submit-button" type="submit" @click="searchTerm">
+            <img id="volcano" src='../assets/volcano.svg'/>
+            <p id="search-text">Get Synonyms!</p>
+          </button>
         </div>
       </form>
     </section>
@@ -78,18 +81,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 #search-input {
   height: 40px;
-  width: 100%;
+  width: 35%;
   border-radius: 10px 0px 0px 10px;
   font-size: 20px;
   padding: 10px;
 }
 
 #ResultsContainer {
-  height: 55vh;
+  position: fixed;
+  height: 100%;
   width: 100%;
   background-color: #E1A953;
   display: flex;
@@ -98,13 +103,29 @@ export default {
 
 #submit-button {
   background: transparent;
+  width: 20%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 #submit-button:hover {
-  background-color: yellow;
+  background-color: #248b40
 }
 
 #volcano {
   height: 35px;
+}
+
+#search-text {
+  color: #E1A953;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+    font-size: 20px;
 }
 </style>
