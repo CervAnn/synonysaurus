@@ -12,6 +12,8 @@
         </div>
       </form>
     </section>
+    <h1 id="search-suggest" v-if="results.length === 0">Please Enter a Search Term to Get Synonyms...</h1>
+    <h1 id="searched-term" v-else>Displaying Synonyms for "{{term}}"...</h1>
     <section id="ResultsContainer">
     <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm(term)" :term="term"/>
     </section>
@@ -131,4 +133,18 @@ main {
 		1px 1px 0 #000;
     font-size: 20px;
 }
+
+#search-suggest, #searched-term {
+  font-family: 'McLaren', cursive;
+  color: #62745D;
+  background-color: #E1A953;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+    font-size: 40px;
+  text-align: center;
+}
+
 </style>

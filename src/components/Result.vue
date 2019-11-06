@@ -11,9 +11,10 @@
 
 export default {
   name: "Result",
-  props: ['result', 'term'],
+  props: ['result'],
   methods: {
     searchTerm(result) {
+      console.log("result", result)
       this.$emit('search', result);
     }
   }
