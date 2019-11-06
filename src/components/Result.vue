@@ -30,7 +30,7 @@ export default {
   button {
     border: none;
     background-color: transparent;
-    width: 75%;
+    width: 65%;
     margin: auto;
     height: 215px;
     color: black;
