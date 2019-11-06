@@ -13,9 +13,9 @@
       </form>
     </section>
     <h1 id="search-suggest" v-if="results.length === 0">Please Enter a Search Term to Get Synonyms...</h1>
-    <h1 id="searched-term" v-else>Displaying Synonyms for "{{term}}"...</h1>
+    <h1 id="searched-term" v-else>Displaying Synonyms for "{{display}}"...</h1>
     <section id="ResultsContainer">
-    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm(term)" :term="term"/>
+    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm(result)" :display="display"/>
     </section>
   </main>
 </template>
@@ -28,16 +28,22 @@ export default {
   components: {
     Result
   },
-  props: ['results'],
   data() {
     return {
-      term: ""
+      term: "",
+      display: "", 
+      results: []
     }
   },
   methods: {
     searchTerm(term) {
-      console.log("search", term)
-      this.$emit('search', this.term)
+      this.display = term
+      const url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${term}?key=70844809-6b63-4d12-b44a-8f4ca91522b5`
+      fetch(url)
+      .then(response => response.json())
+      .then(data => this.results = data[0].meta.syns[0])
+      .catch(error => console.log(error))
+      this.term = ""
     }
   }
 }

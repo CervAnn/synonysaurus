@@ -14,7 +14,6 @@ export default {
   props: ['result'],
   methods: {
     searchTerm(result) {
-      console.log("result", result)
       this.$emit('search', result);
     }
   }
@@ -36,10 +35,12 @@ export default {
     color: black;
     position: relative;
     border-radius: 75%;
+    cursor: pointer;
   }
 
   button:hover {
     background-color: #248b40;
+    cursor: pointer;
   }
 
   #dino-egg {
