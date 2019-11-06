@@ -23,24 +23,28 @@ export default {
 
 <style scoped>
   #Result {
-    height: 100px;
     width: 25%;
+    text-align: center;
   }
 
   button {
     border: none;
     background-color: transparent;
-    width: 60%;
-    height: 210px;
+    width: 75%;
+    margin: auto;
+    height: 215px;
     color: black;
     position: relative;
-    text-align: center;
-    border-radius: 100%;
-    margin-bottom: 50px;
+    border-radius: 75%;
+  }
+
+  button:hover {
+    background-color: #248b40;
   }
 
   #dino-egg {
     height: 200px;
+    text-align: center;
   }
 
   #result-text {
@@ -50,6 +54,7 @@ export default {
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-size: 15px;
+    text-align: center;
   }
 
 </style>

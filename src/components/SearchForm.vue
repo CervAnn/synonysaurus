@@ -46,6 +46,10 @@ export default {
 
 <style scoped>
 
+main {
+  height: 100%
+}
+
 #SearchContainer {
   height: 30vh;
   width: 100%;
@@ -93,17 +97,19 @@ export default {
 }
 
 #ResultsContainer {
-  position: fixed;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: #E1A953;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
 }
 
 #submit-button {
   background: transparent;
-  width: 20%;
+  width: 25%;
   height: 40px;
   display: flex;
   justify-content: center;
