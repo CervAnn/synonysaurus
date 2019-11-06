@@ -4,16 +4,17 @@
       <form id="SearchForm" @submit.prevent="searchTerm(term)">
         <h1 id="search-prompt">Search Term</h1>
         <div id="search-submit-container">
-          <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
-          <button id="submit-button" type="submit" @click="searchTerm(term)">
+          <input id="search-input" type="text" placeholder="Enter search term..." v-model="term"/>
+          <button id="submit-button" type="submit" @click="searchTerm(term)" :disabled="term ? false : true">
             <img id="volcano" src='../assets/volcano.svg'/>
             <p id="search-text">Get Synonyms!</p>
           </button>
         </div>
       </form>
     </section>
-    <h1 id="search-suggest" v-if="results.length === 0">Please Enter a Search Term to Get Synonyms...</h1>
-    <h1 id="searched-term" v-else>Displaying Synonyms for "{{display}}"...</h1>
+    <h1 id="error-message" v-if="results.length === 0 && error">We're unable to find synonyms for this word. Please try searching a different term.</h1>
+    <h1 id="search-suggest" v-else-if="results.length === 0 && !error">Please Enter a Search Term to Get Synonyms...</h1>
+    <h1 id="searched-term" v-else>Displaying {{results.length}} Synonyms for "{{ display }}"...</h1>
     <section id="ResultsContainer">
     <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm(result)" :display="display"/>
     </section>
@@ -32,7 +33,8 @@ export default {
     return {
       term: "",
       display: "", 
-      results: []
+      results: [],
+      error: ""
     }
   },
   methods: {
@@ -40,9 +42,10 @@ export default {
       this.display = term
       const url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${term}?key=70844809-6b63-4d12-b44a-8f4ca91522b5`
       fetch(url)
+      .then(this.results = [])
       .then(response => response.json())
-      .then(data => this.results = data[0].meta.syns[0])
-      .catch(error => console.log(error))
+      .then(data => data === undefined ? this.results = [] : this.results = data[0].meta.syns[0])
+      .catch(error => this.error = error)
       this.term = ""
     }
   }
@@ -140,7 +143,7 @@ main {
     font-size: 20px;
 }
 
-#search-suggest, #searched-term {
+#search-suggest, #searched-term, #error-message {
   font-family: 'McLaren', cursive;
   color: #62745D;
   background-color: #E1A953;
