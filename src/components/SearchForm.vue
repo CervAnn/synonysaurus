@@ -44,7 +44,7 @@ export default {
       fetch(url)
       .then(this.results = [])
       .then(response => response.json())
-      .then(data => data.length > 0 ? this.results = data[0].meta.syns[0] : null)
+      .then(data => data === undefined ? this.results = [] : this.results = data[0].meta.syns[0])
       .catch(error => this.error = error)
       this.term = ""
     }
