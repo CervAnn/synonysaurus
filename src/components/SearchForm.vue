@@ -3,12 +3,17 @@
     <section id="SearchContainer">
       <form id="SearchForm" @submit.prevent="searchTerm">
         <h1 id="search-prompt">Search Term</h1>
-        <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
-        <button type="submit" @click="searchTerm">Submit</button>
+        <div id="search-submit-container">
+          <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
+          <button id="submit-button" type="submit" @click="searchTerm">
+            <img id="volcano" src='../assets/volcano.svg'/>
+            <p id="search-text">Get Synonyms!</p>
+          </button>
+        </div>
       </form>
     </section>
     <section id="ResultsContainer">
-    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm" />
+    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm" :term="term"/>
     </section>
   </main>
 </template>
@@ -41,6 +46,10 @@ export default {
 
 <style scoped>
 
+main {
+  height: 100%
+}
+
 #SearchContainer {
   height: 30vh;
   width: 100%;
@@ -72,19 +81,57 @@ export default {
 		1px 1px 0 #000;
 }
 
+#search-submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 #search-input {
   height: 40px;
-  width: 50%;
-  border-radius: 10px;
+  width: 35%;
+  border-radius: 10px 0px 0px 10px;
   font-size: 20px;
   padding: 10px;
 }
 
 #ResultsContainer {
-  height: 55vh;
+  height: 100vh;
   width: 100%;
   background-color: #E1A953;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+
+#submit-button {
+  background: transparent;
+  width: 25%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#submit-button:hover {
+  background-color: #248b40
+}
+
+#volcano {
+  height: 35px;
+}
+
+#search-text {
+  color: #E1A953;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+    font-size: 20px;
 }
 </style>
