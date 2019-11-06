@@ -42,8 +42,9 @@ export default {
       this.display = term
       const url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${term}?key=70844809-6b63-4d12-b44a-8f4ca91522b5`
       fetch(url)
+      .then(this.results = [])
       .then(response => response.json())
-      .then(data => this.results = data[0].meta.syns[0])
+      .then(data => data.length > 0 ? this.results = data[0].meta.syns[0] : null)
       .catch(error => this.error = error)
       this.term = ""
     }
