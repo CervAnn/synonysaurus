@@ -1,6 +1,6 @@
-# Synonysaurus
+# Synonysaurus: A Dinosaur-themed Synonym Generator
 
-## Ann Cerveny
+### By Ann Cerveny
 
 ## Description
 
