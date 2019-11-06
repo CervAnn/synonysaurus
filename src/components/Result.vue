@@ -1,6 +1,6 @@
 <template>
   <article id="Result">
-    <button id="result-button" @search="searchTerm(result)">
+    <button id="result-button" @click="searchTerm(result)">
       <img id="dino-egg" src="../assets/egg.svg"/>
       <p id="result-text">{{result}}</p>
     </button>
@@ -11,11 +11,10 @@
 
 export default {
   name: "Result",
-  props: ['result'],
+  props: ['result', 'term'],
   methods: {
     searchTerm(result) {
-      this.term = result
-      this.$emit("search", result);
+      this.$emit('search', result);
     }
   }
 }

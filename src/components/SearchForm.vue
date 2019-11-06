@@ -1,11 +1,11 @@
 <template>
   <main>
     <section id="SearchContainer">
-      <form id="SearchForm" @submit.prevent="searchTerm">
+      <form id="SearchForm" @submit.prevent="searchTerm(term)">
         <h1 id="search-prompt">Search Term</h1>
         <div id="search-submit-container">
           <input id="search-input" type="text" placeholder="Enter search term..." v-model="term" required/>
-          <button id="submit-button" type="submit" @click="searchTerm">
+          <button id="submit-button" type="submit" @click="searchTerm(term)">
             <img id="volcano" src='../assets/volcano.svg'/>
             <p id="search-text">Get Synonyms!</p>
           </button>
@@ -13,7 +13,7 @@
       </form>
     </section>
     <section id="ResultsContainer">
-    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm" :term="term"/>
+    <Result v-for="(result, index) in results" :key="index" :result="result" @search="searchTerm(term)" :term="term"/>
     </section>
   </main>
 </template>
@@ -26,19 +26,16 @@ export default {
   components: {
     Result
   },
+  props: ['results'],
   data() {
     return {
-      term: "",
-      results: []
+      term: ""
     }
   },
   methods: {
-    searchTerm() {
-      const url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${this.term}?key=70844809-6b63-4d12-b44a-8f4ca91522b5`
-      fetch(url)
-      .then(response => response.json())
-      .then(data => this.results = data[0].meta.syns[0])
-      .catch(error => console.log(error))
+    searchTerm(term) {
+      console.log("search", term)
+      this.$emit('search', this.term)
     }
   }
 }
