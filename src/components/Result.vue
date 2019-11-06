@@ -1,6 +1,6 @@
 <template>
   <article id="Result">
-    <button id="result-button" @search="searchTerm(result)">
+    <button id="result-button" @click="searchTerm(result)">
       <img id="dino-egg" src="../assets/egg.svg"/>
       <p id="result-text">{{result}}</p>
     </button>
@@ -14,8 +14,7 @@ export default {
   props: ['result'],
   methods: {
     searchTerm(result) {
-      this.term = result
-      this.$emit("search", result);
+      this.$emit('search', result);
     }
   }
 }
@@ -30,16 +29,18 @@ export default {
   button {
     border: none;
     background-color: transparent;
-    width: 75%;
+    width: 65%;
     margin: auto;
     height: 215px;
     color: black;
     position: relative;
     border-radius: 75%;
+    cursor: pointer;
   }
 
   button:hover {
     background-color: #248b40;
+    cursor: pointer;
   }
 
   #dino-egg {
